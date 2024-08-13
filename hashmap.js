@@ -47,8 +47,34 @@ function HashMap() {
     }
   }
 
+  const get = (key) => {
+    const index = hash(key);
+
+    const check = (index) => {
+      if (array[index] == key){
+        return array[index].value;
+      } else if (array[index].next == null)  {
+        return null;
+      } else {
+        get(array[index].next);
+      }  
+    }
+
+  }
+
+  const has = (key) => {
+    const index = hash(key);
+    if (array[index] == key){
+      return true
+    } else if (array[index].next == null){
+      return false
+    } else {
+      has(key);
+    }
+  }
 
 
+  set(123)
 
 
 
