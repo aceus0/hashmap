@@ -50,16 +50,23 @@ function HashMap() {
   const get = (key) => {
     const index = hash(key);
 
-    const check = (index) => {
-      if (array[index] == key){
-        return array[index].value;
-      } else if (array[index].next == null)  {
+    const check = (node) => {
+      if (node.key === key) {
+        return node.value;
+      } else if (node.next == null)  {
         return null;
       } else {
-        get(array[index].next);
+        return check(node.next);
       }  
     }
-
+    
+    if (array[index] == null) {
+      return null;
+    } else if (array[index].key === key) {
+      return array[index].value;
+    } else {
+      return check(array[index]);
+    }
   }
 
   const has = (key) => {
@@ -74,9 +81,11 @@ function HashMap() {
   }
 
 
-  set(123)
-
-
+  set(123, "spongebob");
+  set(456, "patrick");
+  set(789, "squidward");
+  console.log(get(123));
+  
 
 }
 
